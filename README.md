@@ -22,7 +22,7 @@ Este repositório documenta um projeto prático de simulação de ataques de for
 ### 1. Reconhecimento Prévio (Footprinting)
 O primeiro passo foi identificar quais portas e serviços estavam abertos no servidor alvo. Para isso, foi utilizado o Nmap:
 ```bash
-nmap -sV -p 21,22,80,445,139 192.168.56.101
+nmap -sV -p 21,22,80,445,139 192.168.56.101```
 
 ### 2. Geração das Wordlists
 Para otimizar o ataque, foram criadas duas wordlists customizadas diretamente via terminal com senhas e usuários padrão da indústria:
