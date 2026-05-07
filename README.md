@@ -11,7 +11,7 @@ Este repositório documenta um projeto prático de simulação de ataques de for
 
 ## 🛠️ Ambiente e Ferramentas
 - **Sistema Atacante:** Kali Linux
-- **Sistema Alvo:** Metasploitable 2 (IPs: `192.168.56.101` e `192.168.56.102`)
+- **Sistema Alvo:** Metasploitable 2 (IPs: `192.168.56.101`)
 - **Ferramentas:** Nmap, Medusa, Bash
 - **Virtualização:** Oracle VM VirtualBox
 
